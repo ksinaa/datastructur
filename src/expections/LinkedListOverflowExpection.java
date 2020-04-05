@@ -1,4 +1,4 @@
-package datasets.expections;
+package expections;
 
 public class LinkedListOverflowExpection extends Exception {
 

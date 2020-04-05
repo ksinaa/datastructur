@@ -10,6 +10,11 @@ public class Node<T> {
         this.next = null;
     }
 
+    public Node(T value) {
+        this.value = value;
+        this.next = null;
+    }
+
     public Node(T value, Node next) {
         this.value = value;
         this.next = next;

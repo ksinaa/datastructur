@@ -1,8 +1,10 @@
 package linkedList;
 
 import datasets.LinearDatasets;
-import datasets.expections.LinkedListOverflowExpection;
+import expections.LinkedListOverflowExpection;
 import linkedList.node.Node;
+
+import java.text.MessageFormat;
 
 
 public class LinklistSingle<T> implements LinearDatasets<T> {
@@ -16,28 +18,32 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
         this.maxSize = Integer.MAX_VALUE;
         this.currentSize = 0;
     }
-    public LinklistSingle(int size)
-    {
+    public LinklistSingle(int size) {
         this.head = new Node();
         this.maxSize = size;
         this.currentSize = 0;
     }
 
     @Override
-    public void insert(T value, int index) throws LinkedListOverflowExpection {
+    public void insert(T value, int index)  {
 
-        if(this.currentSize >= maxSize)
-            throw new LinkedListOverflowExpection("list is full, current size = " + this.currentSize + ", max size = " + this.maxSize);
+        //check if linked list size is more or equal of max size
+        try {
+            linkedListOverflowExpection();
+        } catch (LinkedListOverflowExpection linkedListOverflowExpection) {
+            return;
+        }
 
-        //TODO add body of insert into here
+        Node prev = new Node(value);
+        Node temp = travers(index);
 
-
+        temp.setNext(prev.getNext());
+        prev.setNext(temp);
         this.currentSize++;
     }
 
     public void insert(T value){
-
-
+        insert(value, this.currentSize);
     }
 
     @Override
@@ -45,7 +51,7 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
         return null;
     }
 
-    //TODO add more delete option (overload delete here
+    //TODO add more delete option (overload delete here)
 
 
     @Override
@@ -65,11 +71,40 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
 
     @Override
     public String show() {
+        //TODO or create toString
         return null;
     }
 
     @Override
     public void toArray() {
 
+    }
+
+    @Override
+    public boolean inEmpty() {
+        if(head == null){
+            return true;
+        }
+        return false;
+    }
+
+    public Node travers(int index){
+
+        if(inEmpty()){
+            throw new IndexOutOfBoundsException(MessageFormat.format("current sie = {0}", this.currentSize));
+        }
+
+        Node temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.getNext();
+        }
+
+        return temp;
+    }
+
+    public void linkedListOverflowExpection() throws LinkedListOverflowExpection{
+        if(this.currentSize >= maxSize)
+            throw new LinkedListOverflowExpection
+                    (MessageFormat.format("list is full, current size = {0}, max size = {1}", this.currentSize, this.maxSize));
     }
 }
