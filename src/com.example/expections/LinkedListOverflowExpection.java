@@ -1,4 +1,4 @@
-package expections;
+package com.example.expections;
 
 public class LinkedListOverflowExpection extends Exception {
 

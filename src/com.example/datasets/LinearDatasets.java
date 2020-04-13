@@ -1,7 +1,8 @@
-package datasets;
+package com.example.datasets;
 
 
-import expections.LinkedListOverflowExpection;
+
+import com.example.expections.LinkedListOverflowExpection;
 
 public interface LinearDatasets<T> {
 
@@ -11,7 +12,7 @@ public interface LinearDatasets<T> {
     T findIndex(int index);
     void sort();
     String show();
-    void toArray();
+    T[] toArray();
     boolean inEmpty();
 
 }

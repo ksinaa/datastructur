@@ -1,8 +1,9 @@
-package linkedList;
+package com.example.linkedList;
 
-import datasets.LinearDatasets;
-import expections.LinkedListOverflowExpection;
+import com.example.datasets.LinearDatasets;
+import com.example.expections.LinkedListOverflowExpection;
 import linkedList.node.Node;
+
 
 import java.text.MessageFormat;
 
@@ -34,11 +35,18 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
             return;
         }
 
-        Node prev = new Node(value);
+        if(this.currentSize == 0){
+            head.setNext(null);
+            head.setValue(value);
+            this.currentSize++;
+            return;
+        }
+
+        Node newNode = new Node(value);
         Node temp = travers(index);
 
-        temp.setNext(prev.getNext());
-        prev.setNext(temp);
+        newNode.setNext(temp.getNext());
+        temp.setNext(newNode);
         this.currentSize++;
     }
 
@@ -71,12 +79,28 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
 
     @Override
     public String show() {
-        //TODO or create toString
-        return null;
+
+        String resualt = "[";
+        Node temp = this.head;
+
+        for (int i = 0; i < currentSize; i++) {
+            if(i == this.currentSize - 1){
+                resualt += MessageFormat.format(" {0} ", temp.getValue());
+                break;
+            }
+            resualt += MessageFormat.format(" {0} , ", temp.getValue());
+            temp = temp.getNext();
+        }
+
+        return resualt + "]";
     }
 
     @Override
-    public void toArray() {
+    public T[] toArray() {
+
+        //java.util.list;
+        Node temp = this.head;
+        return null;
 
     }
 
@@ -90,12 +114,12 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
 
     public Node travers(int index){
 
-        if(inEmpty()){
-            throw new IndexOutOfBoundsException(MessageFormat.format("current sie = {0}", this.currentSize));
+        if(index > this.currentSize){
+            throw new IndexOutOfBoundsException(MessageFormat.format("index {0} out of range (list size = {1}) ", index, this.currentSize));
         }
 
-        Node temp = head;
-        for (int i = 0; i < index; i++) {
+        Node temp = this.head;
+        for (int i = 0; i < index - 1; i++) {
             temp = temp.getNext();
         }
 
@@ -106,5 +130,19 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
         if(this.currentSize >= maxSize)
             throw new LinkedListOverflowExpection
                     (MessageFormat.format("list is full, current size = {0}, max size = {1}", this.currentSize, this.maxSize));
+    }
+
+    public int getCurrentSize() {
+        return currentSize;
+    }
+
+    public void test(){
+        Node temp = this.head;
+
+        for (int i = 0; i < currentSize; i++) {
+            System.out.println(temp.getValue());
+            temp = temp.getNext();
+        }
+
     }
 }
