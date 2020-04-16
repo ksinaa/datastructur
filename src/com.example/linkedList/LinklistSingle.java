@@ -2,10 +2,11 @@ package com.example.linkedList;
 
 import com.example.datasets.LinearDatasets;
 import com.example.expections.LinkedListOverflowExpection;
-import linkedList.node.Node;
+import com.example.linkedList.node.Node;
 
 
 import java.text.MessageFormat;
+import java.util.ArrayList;
 
 
 public class LinklistSingle<T> implements LinearDatasets<T> {
@@ -55,12 +56,46 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
     }
 
     @Override
-    public T delete(T value, int index) {
-        return null;
+    public T delete(int index) {
+
+        if(index == 0){
+            Node temp = head;
+            head = head.getNext();
+            currentSize--;
+            return (T)temp.getValue();
+        }
+
+        Node prev = travers(index - 1);
+        Node temp = prev.getNext();
+
+        prev.setNext(temp.getNext());
+        currentSize--;
+        return (T)temp.getValue();
     }
 
-    //TODO add more delete option (overload delete here)
+    public int deleteByValue(T value){
+        int flag = 0;
 
+        Node prev = this.head;
+        Node temp = prev.getNext();
+        if(this.head.getValue() == value){
+            this.delete(0);
+            flag++;
+            currentSize--;
+        }
+        for (int i = 0; i <= this.currentSize; i++) {
+            if(temp.getValue() == value){
+                prev.setNext(temp.getNext());
+                flag+=1;
+                currentSize--;
+            }
+            prev = temp;
+            temp = temp.getNext();
+        }
+
+
+        return flag;
+    }
 
     @Override
     public int search(T value) {
@@ -69,8 +104,9 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
 
     @Override
     public T findIndex(int index) {
-        return null;
+        return (T)this.travers(index).getValue();
     }
+
 
     @Override
     public void sort() {
@@ -97,11 +133,7 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
 
     @Override
     public T[] toArray() {
-
-        //java.util.list;
-        Node temp = this.head;
         return null;
-
     }
 
     @Override
@@ -112,7 +144,7 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
         return false;
     }
 
-    public Node travers(int index){
+    private Node travers(int index){
 
         if(index > this.currentSize){
             throw new IndexOutOfBoundsException(MessageFormat.format("index {0} out of range (list size = {1}) ", index, this.currentSize));
@@ -145,4 +177,5 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
         }
 
     }
+
 }

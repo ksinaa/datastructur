@@ -1,13 +1,13 @@
-package linkedList.node;
+package com.example.linkedList.node;
 
 //Node for double link lists
 public class DubleNode<T> {
 
     private T value;
-    private Node next;
-    private Node prev;
+    private DubleNode next;
+    private DubleNode prev;
 
-    public DubleNode(T value, Node next, Node prev) {
+    public DubleNode(T value, DubleNode next, DubleNode prev) {
         this.value = value;
         this.next = next;
         this.prev = prev;
@@ -27,19 +27,19 @@ public class DubleNode<T> {
         this.value = value;
     }
 
-    public Node getNext() {
+    public DubleNode getNext() {
         return next;
     }
 
-    public void setNext(Node next) {
+    public void setNext(DubleNode next) {
         this.next = next;
     }
 
-    public Node getPrev() {
+    public DubleNode getPrev() {
         return prev;
     }
 
-    public void setPrev(Node prev) {
+    public void setPrev(DubleNode prev) {
         this.prev = prev;
     }
 }

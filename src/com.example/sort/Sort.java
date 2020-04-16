@@ -1,31 +1,18 @@
 package com.example.sort;
 
-public class Sort {
+interface Sort {
 
-    public static void quickSort(){
+    public void quickSort();
 
-    }
+    public void partition();
 
-    private static void partition(){
+    public void mergeSort();
 
-    }
+    public void merge();
 
-    public static void mergeSort(){
+    public void insertionSort();
 
-    }
-
-    private static void merge(){
-
-    }
-
-    public static void insertionSort(){
-
-
-    }
-
-    public static boolean isSortet(){
-        return true;
-    }
+    public boolean isSortet();
 
 
 }

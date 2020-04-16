@@ -15,12 +15,10 @@ public class Main {
         list.insert(5);
         list.insert(5);
         list.insert(5);
-        list.test();
         System.out.println(list.show());
 
-
-
-
-
+        System.out.println(list.delete(1));
+        System.out.println(list.deleteByValue(5));
+        System.out.println(list.show());
     }
 }
