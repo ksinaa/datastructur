@@ -1,5 +1,6 @@
 package com.example.linkedList.node;
 
+//node for single link lists
 public class Node<T> {
 
     private T value;

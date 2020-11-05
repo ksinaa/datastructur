@@ -9,21 +9,19 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 
 
-public class LinklistSingle<T> implements LinearDatasets<T> {
+public class Linklist<T> implements LinearDatasets<T> {
 
     private Node head;
-    private int maxSize;
-    private int currentSize;
+    private final long maxSize;
+    private int currentSize = 0;
 
-    public LinklistSingle() {
+    public Linklist() {
         this.head = new Node();
-        this.maxSize = Integer.MAX_VALUE;
-        this.currentSize = 0;
+        this.maxSize = Long.MAX_VALUE;
     }
-    public LinklistSingle(int size) {
+    public Linklist(int size) {
         this.head = new Node();
         this.maxSize = size;
-        this.currentSize = 0;
     }
 
     @Override
@@ -74,27 +72,22 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
     }
 
     public int deleteByValue(T value){
-        int flag = 0;
 
-        Node prev = this.head;
-        Node temp = prev.getNext();
-        if(this.head.getValue() == value){
-            this.delete(0);
-            flag++;
-            currentSize--;
-        }
-        for (int i = 0; i <= this.currentSize; i++) {
+        int index = 0;
+        Node temp = this.head;
+
+        for (int i = 0; i < currentSize; i++) {
             if(temp.getValue() == value){
-                prev.setNext(temp.getNext());
-                flag+=1;
-                currentSize--;
+                delete(index + 1);
+                return index;
             }
-            prev = temp;
+
+            index++;
             temp = temp.getNext();
         }
 
 
-        return flag;
+        return -1;
     }
 
     @Override
@@ -158,7 +151,7 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
         return temp;
     }
 
-    public void linkedListOverflowExpection() throws LinkedListOverflowExpection{
+    private void linkedListOverflowExpection() throws LinkedListOverflowExpection{
         if(this.currentSize >= maxSize)
             throw new LinkedListOverflowExpection
                     (MessageFormat.format("list is full, current size = {0}, max size = {1}", this.currentSize, this.maxSize));
@@ -168,14 +161,5 @@ public class LinklistSingle<T> implements LinearDatasets<T> {
         return currentSize;
     }
 
-    public void test(){
-        Node temp = this.head;
-
-        for (int i = 0; i < currentSize; i++) {
-            System.out.println(temp.getValue());
-            temp = temp.getNext();
-        }
-
-    }
 
 }
