@@ -1,8 +1,8 @@
-package com.example.datasets;
+package com.example.util.dataSet;
 
 
 
-import com.example.expections.LinkedListOverflowExpection;
+import com.example.util.expections.LinkedListOverflowExpection;
 
 public interface LinearDatasets<T> {
 

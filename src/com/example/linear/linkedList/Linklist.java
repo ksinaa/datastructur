@@ -1,12 +1,11 @@
-package com.example.linkedList;
+package com.example.linear.linkedList;
 
-import com.example.datasets.LinearDatasets;
-import com.example.expections.LinkedListOverflowExpection;
-import com.example.linkedList.node.Node;
+import com.example.util.dataSet.LinearDatasets;
+import com.example.util.expections.LinkedListOverflowExpection;
+import com.example.linear.linkedList.node.Node;
 
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
 
 
 public class Linklist<T> implements LinearDatasets<T> {

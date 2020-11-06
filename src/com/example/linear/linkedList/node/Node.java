@@ -1,4 +1,4 @@
-package com.example.linkedList.node;
+package com.example.linear.linkedList.node;
 
 //node for single link lists
 public class Node<T> {
