@@ -6,6 +6,7 @@ public class BinaryNode<T> {
     private BinaryNode right;
     private BinaryNode left;
 
+
     public T getValue() {
         return value;
     }
