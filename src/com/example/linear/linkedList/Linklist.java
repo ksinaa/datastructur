@@ -1,7 +1,7 @@
 package com.example.linear.linkedList;
 
 import com.example.util.dataSet.LinearDatasets;
-import com.example.util.expections.LinkedListOverflowExpection;
+import com.example.util.expections.DataStructurExpections;
 import com.example.linear.linkedList.node.Node;
 
 
@@ -29,7 +29,7 @@ public class Linklist<T> implements LinearDatasets<T> {
         //check if linked list size is more or equal of max size
         try {
             linkedListOverflowExpection();
-        } catch (LinkedListOverflowExpection linkedListOverflowExpection) {
+        } catch (DataStructurExpections linkedListOverflowExpection) {
             return;
         }
 
@@ -150,9 +150,9 @@ public class Linklist<T> implements LinearDatasets<T> {
         return temp;
     }
 
-    private void linkedListOverflowExpection() throws LinkedListOverflowExpection{
+    private void linkedListOverflowExpection() throws DataStructurExpections {
         if(this.currentSize >= maxSize)
-            throw new LinkedListOverflowExpection
+            throw new DataStructurExpections
                     (MessageFormat.format("list is full, current size = {0}, max size = {1}", this.currentSize, this.maxSize));
     }
 

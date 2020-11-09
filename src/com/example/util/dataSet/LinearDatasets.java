@@ -2,11 +2,13 @@ package com.example.util.dataSet;
 
 
 
-import com.example.util.expections.LinkedListOverflowExpection;
+import com.example.util.expections.DataStructurExpections;
 
 public interface LinearDatasets<T> {
 
-    void insert(T value, int index) throws LinkedListOverflowExpection;
+    default void insert(T value, int index) throws DataStructurExpections{
+        throw new UnsupportedOperationException("inserts with index are not suport");
+    };
     T delete(int index);
     int search(T value);
     T findIndex(int index);
