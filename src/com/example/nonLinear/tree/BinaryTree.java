@@ -6,23 +6,29 @@ import com.example.util.dataSet.NonLinearDatasets;
 public class BinaryTree<T> implements NonLinearDatasets<T> {
 
     private final BinaryNode head;
-    private final int nodeNumber;
+    private int currentNodeCounter;
     private int maxNode;
 
 
     public BinaryTree(int maxNode) {
         this.maxNode = maxNode;
         this.head = null;
-        this.nodeNumber = 0;
+        this.currentNodeCounter = 0;
     }
 
     public BinaryTree() {
         this.head = null;
-        this.nodeNumber = 0;
+        this.currentNodeCounter = 0;
     }
 
     @Override
     public void insert(T value) {
+
+        if(currentNodeCounter >= maxNode){
+            throw new IndexOutOfBoundsException("current node is equal to max node. delete something to add new");
+        }
+
+        currentNodeCounter++;
 
         BinaryNode valueObject = new BinaryNode();
         valueObject.setValue(value);
@@ -63,18 +69,24 @@ public class BinaryTree<T> implements NonLinearDatasets<T> {
     }
 
     @Override
-    public int search(T value) {
-        return 0;
+    public T search(T value, String searchType) {
+
+        if(searchType == "inorder"){
+            return inorder(value);
+        }else if
+        (searchType == "preorder"){
+            return postorder(value);
+        }else if
+        (searchType == "preorder"){
+            return preorder(value);
+        }else{
+            throw new IllegalArgumentException("enter inorder preorder or postorder!");
+        }
     }
 
     @Override
     public T findIndex(int index) {
         return null;
-    }
-
-    @Override
-    public void sort() {
-
     }
 
     @Override
@@ -91,6 +103,20 @@ public class BinaryTree<T> implements NonLinearDatasets<T> {
     public boolean inEmpty() {
         return false;
     }
+
+    public T inorder(T value){
+        return null;
+    }
+
+    public T preorder(T value){
+        return null;
+    }
+
+    public T postorder(T value){
+        return null;
+    }
+
+
 
     //TODO adding prefix and post fix methods for search
 }
