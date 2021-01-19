@@ -1,3 +1,4 @@
+/*
 package com.example.nonLinear.tree;
 
 
@@ -120,3 +121,4 @@ public class BinaryTree<T> implements NonLinearDatasets<T> {
 
     //TODO adding prefix and post fix methods for search
 }
+*/

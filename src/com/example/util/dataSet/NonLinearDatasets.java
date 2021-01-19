@@ -14,12 +14,6 @@ public interface NonLinearDatasets<T> extends LinearDatasets<T>{
     void insert(T value);
 
 
-    @Override
-    default int search(T value){
-        throw new UnsupportedOperationException("you should declare type of search");
-    }
-
-    T search(T value, String searchType);
 
     @Override
     default void sort(){
