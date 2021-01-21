@@ -6,24 +6,25 @@ public class LinkedListQueue<T> implements Queue<T>{
 
     private int head;
     private int tail;
-    private Linklist queue;
+    private Linklist<T> queue;
 
-    public LinkedListQueue(Linklist queue){
-        this.queue = queue;
+    public LinkedListQueue(){
+        this.queue = new Linklist<>();
         head = 0;
         tail = 0;
     }
 
 
+
     @Override
-    public void push(Object value) {
+    public void push(T value) {
         this.queue.insert(value);
     }
 
     @Override
-    public void pop() {
+    public T pop() {
         if(isEmpty()) throw new IndexOutOfBoundsException("queue is empty");
-        this.queue.delete(0);
+        return this.queue.delete(0);
     }
 
     @Override
