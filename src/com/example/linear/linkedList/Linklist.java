@@ -150,6 +150,10 @@ public class Linklist<T> implements LinearDatasets<T> {
         return temp;
     }
 
+    public int size(){
+        return this.currentSize;
+    }
+
     private void linkedListOverflowExpection() throws DataStructurExpections {
         if(this.currentSize >= maxSize)
             throw new DataStructurExpections
